@@ -1,0 +1,71 @@
+%YAML 1.2
+---
+name: MLscript
+file_extensions: [mls]
+scope: source.mls
+
+contexts:
+  main:
+    # Function declarations
+    - match: "\\b(fun)\\s+([_a-zA-Z][_a-zA-Z0-9]*)\\b"
+      scope: meta.function.declaration.mlscript
+      captures:
+        1: storage.type.function.mlscript
+        2: entity.name.function.mlscript
+    # Class declarations
+    - match: "\\b(class)\\s+([_A-Z][_a-zA-Z0-9]*)\\b"
+      scope: meta.class.declaration.mlscript
+      captures:
+        1: storage.type.class.mlscript
+        2: entity.name.class.mlscript
+    # Identifiers
+    - match: "\\b[A-Z][a-zA-Z0-9]*\\b"
+      scope: entity.name.type.mlscript
+    - match: "\\b(?:anything|nothing|string|int|number|bool)\\b"
+      scope: entity.name.type.mlscript
+    - match: "\\b'[a-zA-Z_][a-zA-Z0-9_]*\\b"
+      scope: entity.name.type.mlscript
+    # Keywords
+    - match: "\\b(class|module|type( family)|mixin|def|rec)\\b"
+      scope: keyword.structure.mlscript
+    - match: "\\b(let|of|is|extends|this)\\b"
+      scope: keyword.control.mlscript
+    - match: "\\b(if|and|then|else|case)\\b"
+      scope: keyword.control.conditional.mlscript
+    # String literals
+    - match: '"'
+      push: string
+    # Boolean literals
+    - match: "\\b(true|false)\\b"
+      scope: keyword.constant.bool.mlscript
+    # Numeric literals
+    - match: "\\b[0-9][0-9_]*\\b"
+      scope: constant.numeric.decimal.mlscript
+    # Comments
+    - match: "//"
+      push: comment
+    - match: (<-|←|->|→|=>|⇒|\?|\:+|@|\|\.\.\.)+
+      scope: keyword.operator.mlscript
+    - match: (==?|!=|<=|>=|<>)
+      scope: keyword.operator.comparison.mlscript
+    - match: '(\-|\+|\*|/(?![/*])|%|~)'
+      scope: keyword.operator.arithmetic.mlscript
+    - match: '(?<![!#%&*+\-\/:<>=?@^|~\p{Sm}\p{So}]|_)(!|&&|\|\|)(?![!#%&*+\-\/:<>=?@^|~\p{Sm}\p{So}])'
+      scope: keyword.operator.logical.mlscript
+  meta-brackets:
+    - match: '{|}|\(|\)|\[|\]'
+      scope: meta.bracket.mlscript
+  string:
+    - meta_scope: string.quoted.double.mlscript
+    - match: "\\\\u\\d{4}"
+      scope: constant.character.escape.mlscript
+    - match: "\\\\x[0-9a-fA-F]{2}"
+      scope: constant.character.escape.mlscript
+    - match: "\\\\."
+      scope: constant.character.escape.mlscript
+    - match: '"'
+      pop: true
+  comment:
+    - meta_scope: comment.line.double-slash.mlscript
+    - match: $
+      pop: true
