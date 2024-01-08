@@ -17,15 +17,10 @@ This is a Typst slide template for my PQE.
   ```
   So, typst-lsp will only compile PDF files when pinned tab is saved.
 
-Also
-
-## Requirements
-
-- Typst 0.10 (already includes [Polylux][polylux])
-
-[polylux](https://github.com/andreasKroepelin/polylux)
-
+Note that the Typst comes with typst-lsp already includes [Polylux][polylux]).
 You may need to install the following fonts.
+
+[polylux]: https://github.com/andreasKroepelin/polylux
 
 - [STIX Two Math](https://github.com/stipub/stixfonts) for equations
 - [Fira Code](https://github.com/tonsky/FiraCode) for inline code and code block
