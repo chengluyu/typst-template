@@ -13,11 +13,13 @@ contexts:
         1: storage.type.function.mlscript
         2: entity.name.function.mlscript
     # Class declarations
-    - match: "\\b(class)\\s+([_A-Z][_a-zA-Z0-9]*)\\b"
+    - match: "\\b(abstract\\s+)?(data\\s+)?(class)\\s+([_A-Z][_a-zA-Z0-9]*)\\b"
       scope: meta.class.declaration.mlscript
       captures:
         1: storage.type.class.mlscript
-        2: entity.name.class.mlscript
+        2: storage.type.class.mlscript
+        3: storage.type.class.mlscript
+        4: entity.name.class.mlscript
     # Identifiers
     - match: "\\b[A-Z][a-zA-Z0-9]*\\b"
       scope: entity.name.type.mlscript
@@ -26,9 +28,9 @@ contexts:
     - match: "\\b'[a-zA-Z_][a-zA-Z0-9_]*\\b"
       scope: entity.name.type.mlscript
     # Keywords
-    - match: "\\b(class|module|type( family)|mixin|def|rec)\\b"
+    - match: "\\b(class|module|object|constructor|with)\\b"
       scope: keyword.structure.mlscript
-    - match: "\\b(let|of|is|extends|this)\\b"
+    - match: "\\b(val|let|of|is|extends|this)\\b"
       scope: keyword.control.mlscript
     - match: "\\b(if|and|then|else|case)\\b"
       scope: keyword.control.conditional.mlscript
@@ -36,7 +38,7 @@ contexts:
     - match: '"'
       push: string
     # Boolean literals
-    - match: "\\b(true|false)\\b"
+    - match: "\\b(true|false|null|undefined)\\b"
       scope: keyword.constant.bool.mlscript
     # Numeric literals
     - match: "\\b[0-9][0-9_]*\\b"

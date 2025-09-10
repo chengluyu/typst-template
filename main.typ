@@ -1,4 +1,5 @@
-#import "@local/polylux:0.3.1": *
+#import "@preview/polylux:0.4.0": slide as polylux-slide
+#import "@preview/polylux:0.4.0": *
 #import "./shorthands.typ": *
 
 #let production-mode = false
@@ -106,7 +107,7 @@
   footer: [
     #set text(size: 0.5em)
     #h(1fr)
-    #counter("logical-slide").display("1")
+    #context counter("logical-slide").display("1")
   ]
 )
 #set text(size: 22pt, font: "Public Sans", fill: major-text-color)
@@ -176,12 +177,22 @@
   Section Title
 ]
 
+#slide(title: [MLscript Syntax Highlighting])[
+  ```mls
+  abstract class Test
+  class Test
+  data class Point(x: Int, y: Int)
+  module Parser with
+    fun parse(s: Str): Tree = ???
+  ```
+]
+
 #slide(title: [Grid in list items])[
 
   // Set relative font size of code block.
   #show raw.where(block: true): set text(size: 0.9em)
 
-  #list-one-by-one(tight: false)[
+  #one-by-one(tight: false)[
     Programming a scene tree in computer graphics.
 
     ```ts
@@ -290,7 +301,7 @@
 
 #slide(title: [Covered Simple List])[
   #set text(size: 0.9em)
-  #list-one-by-one(tight: false)[
+  #one-by-one(tight: false)[
     Bullet list item 1
   ][
     Bullet list item 2
@@ -301,9 +312,9 @@
 
 #slide(title: [This page has smaller text.])[
   #set text(size: 0.9em) // <- Adjust the relative size of main text.
-  #show raw.where(block: true): set text(size: 0.9em) // <- Adjust the raltive size of code block.
+  #show raw.where(block: true): set text(size: 0.9em) // <- Adjust the relative size of code block.
 
-  #list-one-by-one(tight: false)[
+  #one-by-one(tight: false)[
     Bullet list item 1
   ][
     Bullet list item 2
