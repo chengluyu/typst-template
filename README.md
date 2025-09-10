@@ -18,5 +18,7 @@ This is a Typst slide template for the presentation of my PhD Qualifying Examina
 
 ## Usage
 
-- Install [Tinymist][https://github.com/Myriad-Dreamin/tinymist] in VSCode.
+- Install [Tinymist][tinymist] in VSCode.
 - Open `main.typ` and click the preview button.
+
+[tinymist]: https://github.com/Myriad-Dreamin/tinymist
